@@ -15,8 +15,9 @@ st.set_page_config(
 )
 
 # ---- Session State Initialisatie ----
+def init_session_state():
 if 'icpc_select' not in st.session_state:
-    st.session_state.icpc_select = "L84"  # Default ICPC-code
+    st.session_state.icpc_select = "L84" 
 if 'notitie' not in st.session_state:
     st.session_state.notitie = ""
 if 'patienten' not in st.session_state:
@@ -29,6 +30,8 @@ if 'snelkoppelingen' not in st.session_state:
         "Fysio Knie": {"icpc": "K85", "text": "Fysiotherapie bij artrose van de knie"},
         "Dermatoloog": {"icpc": "H27", "text": "Verwijzing dermatoloog ivm therapieresistent eczeem"}
     }
+
+init_session_state()
 
 # ---- CSS ----
 st.markdown("""
@@ -197,10 +200,10 @@ with col2:
     cols = st.columns(3)
     for i, (name, data) in enumerate(st.session_state.snelkoppelingen.items()):
         with cols[i % 3]:
-            if st.button(name):
-                st.session_state.icpc_select = data["icpc"]
-                st.session_state.notitie = data["text"]
-                st.rerun()
+            if st.button(name, key=f"snelkoppeling_{i}"):
+                st.session_state["icpc_select"] = data["icpc"]
+                st.session_state["notitie"] = data["text"]
+                st.experimental_rerun()
 
 # Medische motivatie
 notitie = st.text_area(
