@@ -16,20 +16,21 @@ st.set_page_config(
 
 # ---- Session State Initialisatie ----
 def init_session_state():
-if 'icpc_select' not in st.session_state:
-    st.session_state.icpc_select = "L84" 
-if 'notitie' not in st.session_state:
-    st.session_state.notitie = ""
-if 'patienten' not in st.session_state:
-    st.session_state.patienten = pd.DataFrame(columns=[
-        "ID", "Datum", "Naam", "Verzekeraar", "ICPC", "Type", "Urgentie"
-    ])
-if 'snelkoppelingen' not in st.session_state:
-    st.session_state.snelkoppelingen = {
-        "MRI Rug": {"icpc": "L84", "text": "MRI lumbale wervelkolom ivm aanhoudende lage rugpijn met uitstraling"},
-        "Fysio Knie": {"icpc": "K85", "text": "Fysiotherapie bij artrose van de knie"},
-        "Dermatoloog": {"icpc": "H27", "text": "Verwijzing dermatoloog ivm therapieresistent eczeem"}
-    }
+    """Initialiseer alle benodigde session_state variabelen"""
+    if 'icpc_select' not in st.session_state:
+        st.session_state.icpc_select = "L84" 
+    if 'notitie' not in st.session_state:
+        st.session_state.notitie = ""
+    if 'patienten' not in st.session_state:
+        st.session_state.patienten = pd.DataFrame(columns=[
+            "ID", "Datum", "Naam", "Verzekeraar", "ICPC", "Type", "Urgentie"
+        ])
+    if 'snelkoppelingen' not in st.session_state:
+     st.session_state.snelkoppelingen = {
+          "MRI Rug": {"icpc": "L84", "text": "MRI lumbale wervelkolom ivm aanhoudende lage rugpijn met uitstraling"},
+          "Fysio Knie": {"icpc": "K85", "text": "Fysiotherapie bij artrose van de knie"},
+          "Dermatoloog": {"icpc": "H27", "text": "Verwijzing dermatoloog ivm therapieresistent eczeem"}
+         }
 
 init_session_state()
 
